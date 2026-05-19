@@ -1,38 +1,149 @@
 .app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
 
-  &__hello {
-    margin: 0;
-    font-size: 4rem;
+  &__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  &__label {
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+  }
+
+  &__title {
+    margin: 0 0 1rem;
+    font-size: 2.5rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    background: linear-gradient(
-      90deg,
-      #1e3a8a 0%,
-      #2563eb 20%,
-      #60a5fa 40%,
-      #bfdbfe 50%,
-      #60a5fa 60%,
-      #2563eb 80%,
-      #1e3a8a 100%
-    );
+    background: linear-gradient(90deg, #2563eb 0%, #60a5fa 50%, #2563eb 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradient-shift 3s linear infinite;
+    animation: gradient-shift 4s linear infinite;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 1rem;
+    color: $color-text-muted;
+    line-height: 1.7;
+  }
+
+  &__scenarios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 960px;
+    margin-bottom: 3rem;
+  }
+
+  &__footer {
+    text-align: center;
+    color: $color-text-muted;
+    font-size: 0.9rem;
+
+    p { margin: 0 0 0.75rem; }
+
+    code {
+      color: $color-text-muted;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+    }
+  }
+
+  &__cmd {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid $color-border;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: #60a5fa;
+  }
+}
+
+.scenario-card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.2s, transform 0.2s;
+
+  &:hover {
+    border-color: #2563eb;
+    transform: translateY(-2px);
+  }
+
+  &__number {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #60a5fa;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: $color-text;
+  }
+
+  &__desc {
+    margin: 0;
+    font-size: 0.875rem;
+    color: $color-text-muted;
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  &__tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.2em 0.6em;
+    border-radius: 4px;
+    background: rgba(96, 165, 250, 0.12);
+    color: #93c5fd;
+    border: 1px solid rgba(96, 165, 250, 0.2);
+  }
+
+  &__agent {
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    color: $color-text-muted;
+
+    code {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.15em 0.5em;
+      border-radius: 4px;
+      color: #a78bfa;
+    }
   }
 }
 
 @keyframes gradient-shift {
-  0% {
-    background-position: 0% center;
-  }
-
-  100% {
-    background-position: 200% center;
-  }
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
 }

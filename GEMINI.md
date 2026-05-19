@@ -14,6 +14,7 @@
 - SCSS 변수: `src/styles/_variables.scss`
 - 경로 별칭: `@/` → `src/`
 - Gemini API 헬퍼: `src/lib/gemini.ts` — `callGemini`, `analyzeWithGemini` 함수 제공
+- Google 연동 헬퍼: `src/lib/google.ts` — `getGoogleAccessToken`, `sendGmail`, `createCalendarEvent`, `sendGoogleChat` 함수 제공
 
 ## Gemini API 사용 규칙
 
@@ -21,6 +22,12 @@
 - API 호출은 `src/lib/gemini.ts` 의 `callGemini` / `analyzeWithGemini` 함수를 통해 사용
 - 모든 컴포넌트는 `src/components/` 하위에 폴더 단위로 생성
 - SCSS는 BEM 방식으로 작성하고, `_variables.scss` 의 변수를 우선 사용
+
+## Google 연동 사용 규칙
+
+- Gmail 발송 · Calendar 생성: `src/lib/google.ts` 의 `getGoogleAccessToken` → `sendGmail` / `createCalendarEvent` 순서로 호출
+- Google Chat 발송: `sendGoogleChat(message)` 한 줄로 호출 (OAuth 불필요, Webhook 방식)
+- Client ID · Webhook URL은 `.env.local` 에서만 참조 (절대 하드코딩 금지)
 
 ## 파일 구조 규칙
 
@@ -31,7 +38,8 @@ src/
 │       ├── index.tsx
 │       └── index.scss
 ├── lib/
-│   └── gemini.ts        # Gemini API 헬퍼 (수정 금지)
+│   ├── gemini.ts        # Gemini API 헬퍼 (수정 금지)
+│   └── google.ts        # Google 연동 헬퍼 (수정 금지)
 └── styles/
     ├── _variables.scss  # SCSS 변수
     └── index.scss       # 글로벌 스타일
