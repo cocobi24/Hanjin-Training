@@ -16,18 +16,26 @@
 - Gemini API 헬퍼: `src/lib/gemini.ts` — `callGemini`, `analyzeWithGemini` 함수 제공
 - Google 연동 헬퍼: `src/lib/google.ts` — `getGoogleAccessToken`, `sendGmail`, `createCalendarEvent`, `sendGoogleChat` 함수 제공
 
-## Gemini API 사용 규칙
+## 반드시 지켜야 할 규칙
 
-- API 키는 `import.meta.env.VITE_GEMINI_API_KEY` 로 참조 (절대 하드코딩 금지)
-- API 호출은 `src/lib/gemini.ts` 의 `callGemini` / `analyzeWithGemini` 함수를 통해 사용
+**Gemini API를 호출할 때는 항상 `src/lib/gemini.ts` 의 함수를 사용한다. 직접 fetch 하지 않는다.**
+
+| 하고 싶은 것 | 사용할 함수 |
+| --- | --- |
+| 텍스트 분석·생성 | `callGemini(prompt)` |
+| 파일(이미지·PDF 등) 포함 분석 | `analyzeWithGemini(prompt, files)` |
+
+**Gmail·Calendar·Google Chat 기능도 항상 `src/lib/google.ts` 의 함수를 사용한다. 직접 API를 호출하지 않는다.**
+
+| 하고 싶은 것 | 사용할 함수 |
+| --- | --- |
+| Gmail 발송 | `getGoogleAccessToken()` 으로 로그인 → `sendGmail(token, to, subject, body)` |
+| Google Calendar 일정 생성 | `getGoogleAccessToken()` 으로 로그인 → `createCalendarEvent(token, event)` |
+| Google Chat 메시지 발송 | `sendGoogleChat(message)` 한 줄로 끝 (로그인 불필요) |
+
+- API 키·클라이언트 ID·Webhook URL은 절대 코드에 직접 쓰지 않는다. `.env.local` 에서 자동으로 읽힘.
 - 모든 컴포넌트는 `src/components/` 하위에 폴더 단위로 생성
 - SCSS는 BEM 방식으로 작성하고, `_variables.scss` 의 변수를 우선 사용
-
-## Google 연동 사용 규칙
-
-- Gmail 발송 · Calendar 생성: `src/lib/google.ts` 의 `getGoogleAccessToken` → `sendGmail` / `createCalendarEvent` 순서로 호출
-- Google Chat 발송: `sendGoogleChat(message)` 한 줄로 호출 (OAuth 불필요, Webhook 방식)
-- Client ID · Webhook URL은 `.env.local` 에서만 참조 (절대 하드코딩 금지)
 
 ## 파일 구조 규칙
 
