@@ -41,10 +41,16 @@
 
 ```
 src/
-├── components/          # UI 컴포넌트 (폴더 단위)
-│   └── MyAgent/
+├── components/
+│   ├── Scenario01/      # 시나리오 01 실습 화면 — 이 파일을 수정해서 Agent를 만든다
+│   │   ├── index.tsx
+│   │   └── index.scss   (필요 시 생성)
+│   ├── Scenario02/      # 시나리오 02 실습 화면
+│   │   ├── index.tsx
+│   │   └── index.scss   (필요 시 생성)
+│   └── Scenario03/      # 시나리오 03 실습 화면
 │       ├── index.tsx
-│       └── index.scss
+│       └── index.scss   (필요 시 생성)
 ├── lib/
 │   ├── gemini.ts        # Gemini API 헬퍼 (수정 금지)
 │   └── google.ts        # Google 연동 헬퍼 (수정 금지)
@@ -52,6 +58,16 @@ src/
     ├── _variables.scss  # SCSS 변수
     └── index.scss       # 글로벌 스타일
 ```
+
+**시나리오별 작업 대상 파일:**
+
+| 실습 중인 시나리오 | 수정할 파일 |
+| --- | --- |
+| 시나리오 01 (근태 보고서) | `src/components/Scenario01/index.tsx` |
+| 시나리오 02 (이메일 자동화) | `src/components/Scenario02/index.tsx` |
+| 시나리오 03 (KPI 분석) | `src/components/Scenario03/index.tsx` |
+
+하위 컴포넌트가 필요하면 같은 폴더 안에 추가 파일을 만든다.
 
 ## 코드 스타일
 

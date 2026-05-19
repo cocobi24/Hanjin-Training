@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 4rem 2rem;
 
   &__header {
@@ -129,17 +130,690 @@
     border: 1px solid rgba(96, 165, 250, 0.2);
   }
 
-  &__agent {
-    margin-top: 0.25rem;
-    font-size: 0.8rem;
+  &__cta {
+    margin-top: auto;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #60a5fa;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  &:hover &__cta {
+    opacity: 1;
+  }
+}
+
+/* ── 모달 ── */
+.app__modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1.5rem;
+}
+
+.app__modal {
+  background: #1e2433;
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &-number {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #60a5fa;
+  }
+
+  &-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $color-text;
+    flex: 1;
+  }
+
+  &-close {
+    background: none;
+    border: none;
+    color: $color-text-muted;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+
+    &:hover { color: $color-text; }
+  }
+
+  &-guide {
+    margin: 0;
+    font-size: 0.875rem;
+    color: $color-text-muted;
+    line-height: 1.6;
+  }
+
+  &-prompt {
+    margin: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid $color-border;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-size: 0.82rem;
+    color: #cbd5e1;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.65;
+    max-height: 280px;
+    overflow-y: auto;
+    font-family: inherit;
+  }
+
+  &-copy {
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    background: #2563eb;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-end;
+
+    &:hover { background: #1d4ed8; }
+
+    &.copied {
+      background: #16a34a;
+    }
+  }
+}
+
+/* ── 시나리오 소개 페이지 ── */
+.intro-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+
+  &__back {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: $color-text-muted;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.25rem 0;
+    margin-bottom: 2.5rem;
+    transition: color 0.2s;
+    &:hover { color: $color-text; }
+  }
+
+  &__body {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__number {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #60a5fa;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: $color-text;
+  }
+
+  &__desc {
+    margin: 0;
+    font-size: 0.95rem;
+    color: $color-text-muted;
+    line-height: 1.7;
+  }
+
+  &__step-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__step-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: $color-text-muted;
+  }
+
+  &__step-idx {
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background: rgba(96, 165, 250, 0.12);
+    color: #60a5fa;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__step-label {
+    color: $color-text;
+    font-size: 0.875rem;
+  }
+
+  &__start-btn {
+    margin-top: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: stretch;
+
+    &:hover { background: #1d4ed8; }
+  }
+}
+
+/* ── 실습 가이드 페이지 ── */
+.guide-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+.guide-panel {
+  width: 480px;
+  flex-shrink: 0;
+  display: flex;
+  border-right: 1px solid $color-border;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+
+.guide-preview {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background: #0d0d14;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1.25rem;
+    border-bottom: 1px solid $color-border;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #60a5fa;
+    letter-spacing: 0.03em;
+  }
+
+  &__hint {
+    font-size: 0.72rem;
+    color: $color-text-muted;
+  }
+
+  &__content {
+    flex: 1;
+    overflow-y: auto;
+  }
+}
+
+.guide-nav {
+  width: 220px;
+  flex-shrink: 0;
+  background: #161622;
+  border-right: 1px solid $color-border;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  gap: 1rem;
+  height: 100%;
+  overflow-y: auto;
+
+  &__back {
+    background: none;
+    border: none;
+    color: $color-text-muted;
+    font-size: 0.82rem;
+    cursor: pointer;
+    text-align: left;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    transition: color 0.2s;
+    &:hover { color: $color-text; }
+  }
+
+  &__title {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #60a5fa;
+    padding: 0 0.4rem;
+    letter-spacing: 0.03em;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__item {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.6rem 0.6rem;
+    background: none;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s;
     color: $color-text-muted;
 
-    code {
-      background: rgba(255, 255, 255, 0.06);
-      padding: 0.15em 0.5em;
-      border-radius: 4px;
-      color: #a78bfa;
+    &:hover { background: rgba(255,255,255,0.04); color: $color-text; }
+
+    &.active {
+      background: rgba(96, 165, 250, 0.12);
+      color: #93c5fd;
+
+      .guide-nav__item-idx {
+        background: #2563eb;
+        color: #fff;
+      }
     }
+  }
+
+  &__item-idx {
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    font-size: 0.68rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: background 0.15s;
+  }
+
+  &__item-label {
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+}
+
+.guide-content {
+  flex: 1;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  overflow-y: auto;
+
+  &__step-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: $color-text-muted;
+    text-transform: uppercase;
+  }
+
+  &__label {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $color-text;
+  }
+
+  &__goal {
+    margin: 0;
+    font-size: 1rem;
+    color: $color-text-muted;
+    line-height: 1.7;
+  }
+
+  &__tip-box {
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(96,165,250,0.2);
+    border-radius: 10px;
+    padding: 1.25rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__tip-title {
+    margin: 0;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #93c5fd;
+  }
+
+  &__tip-hint {
+    margin: 0;
+    font-size: 0.78rem;
+    color: $color-text-muted;
+  }
+
+  &__tip-text {
+    margin: 0;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  &__copy {
+    align-self: flex-end;
+    padding: 0.35rem 0.9rem;
+    background: rgba(96,165,250,0.1);
+    border: 1px solid rgba(96,165,250,0.2);
+    border-radius: 6px;
+    color: #93c5fd;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+    &:hover { background: rgba(96,165,250,0.2); }
+    &.copied { background: rgba(22,163,74,0.15); border-color: rgba(22,163,74,0.3); color: #86efac; }
+  }
+
+  &__nav-btns {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  &__prev, &__next, &__finish {
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  &__prev {
+    background: rgba(255,255,255,0.06);
+    color: $color-text-muted;
+    &:hover { background: rgba(255,255,255,0.1); color: $color-text; }
+  }
+
+  &__next {
+    background: #2563eb;
+    color: #fff;
+    &:hover { background: #1d4ed8; }
+  }
+
+  &__finish {
+    background: rgba(22,163,74,0.2);
+    color: #86efac;
+    border: 1px solid rgba(22,163,74,0.3);
+    &:hover { background: rgba(22,163,74,0.3); }
+  }
+}
+
+/* ── 시나리오 상세 페이지 (구버전 유지) ── */
+.scenario-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+
+  &__back {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: $color-text-muted;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.25rem 0;
+    margin-bottom: 2rem;
+    transition: color 0.2s;
+
+    &:hover { color: $color-text; }
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    width: 100%;
+  }
+
+  &__number {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #60a5fa;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    margin: 0 0 0.75rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: $color-text;
+  }
+
+  &__desc {
+    margin: 0;
+    font-size: 0.95rem;
+    color: $color-text-muted;
+    line-height: 1.7;
+  }
+
+  &__steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+.step-item {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+
+  &.open {
+    border-color: rgba(96, 165, 250, 0.4);
+  }
+
+  &__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+
+    &:hover { background: rgba(255, 255, 255, 0.03); }
+  }
+
+  &__index {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background: rgba(96, 165, 250, 0.15);
+    color: #60a5fa;
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    flex: 1;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $color-text;
+  }
+
+  &__arrow {
+    font-size: 0.65rem;
+    color: $color-text-muted;
+  }
+
+  &__body {
+    padding: 0 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__goal {
+    margin: 0;
+    font-size: 0.875rem;
+    color: $color-text-muted;
+    line-height: 1.65;
+    padding-left: 2.6rem;
+  }
+
+  &__tip-box {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid $color-border;
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  &__tip-label {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #93c5fd;
+  }
+
+  &__tip-text {
+    margin: 0;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  &__copy {
+    align-self: flex-end;
+    padding: 0.35rem 0.9rem;
+    background: rgba(96, 165, 250, 0.12);
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    border-radius: 6px;
+    color: #93c5fd;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover { background: rgba(96, 165, 250, 0.2); }
+    &.copied { background: rgba(22, 163, 74, 0.2); border-color: rgba(22, 163, 74, 0.3); color: #86efac; }
+  }
+}
+
+/* ── 시나리오 실습 워크스페이스 ── */
+.scenario-workspace {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    max-width: 360px;
+  }
+
+  &__icon {
+    font-size: 3rem;
+    opacity: 0.5;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $color-text;
+  }
+
+  &__hint {
+    margin: 0;
+    font-size: 0.875rem;
+    color: $color-text-muted;
+    line-height: 1.65;
   }
 }
 
